@@ -7,6 +7,7 @@ Library lives in: <root>/js/lib/FTS.utilities.js
 - add querySelector polyfill for groupDomElements()
 - add JSON polyfill for global
 - create better documentation
+- strategically order methods
 
 ## Included Polyfills
 
