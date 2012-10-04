@@ -2,7 +2,7 @@
     Project: Fresh Tilled Soil JavaScript Method Library
     Created on: 8/6/2012
     Version: 0.02
-	License: MIT, http://www.opensource.org/licenses/MIT
+    License: MIT, http://www.opensource.org/licenses/MIT
 */
 
 // declare the FTS namespace
