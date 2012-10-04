@@ -15,7 +15,7 @@ if (!Array.indexOf) {
 
     Array.prototype.indexOf = function (obj, start) {
 
-        "use strict";
+        'use strict';
 
         var len = this.length,
             i;
@@ -23,9 +23,12 @@ if (!Array.indexOf) {
         for (i = (start || 0); i < len; i = i + 1) {
 
             if (this[i] === obj) {
+
                 return i;
+
             }
         }
+
         return -1;
     };
 
@@ -33,13 +36,13 @@ if (!Array.indexOf) {
 
 // don't break console in unsupported browsers
 if (console.log === 'undefined') {
-    
+
     // if console.log is undefined, manually build the log object so it doesn't error out
     var console = {
         log: function () {
 
              // nothing here, just making sure there's no error thrown
-            "use strict";
+            'use strict';
 
         }
     };
@@ -53,62 +56,72 @@ FTS = {
 
     setCookie : function (c_name, value) {
 
-        "use strict";
+        'use strict';
 
         var exDays = 7, // manually set the expiration date to 7 days
             exDate = new Date(),
             c_value;
 
         exDate.setDate(exDate.getDate() + exDays);
-        c_value = escape(value) + ((exDays === null) ? "" : "; expires=" + exDate.toUTCString());
-        document.cookie = c_name + "=" + c_value;
+        c_value = escape(value) + ((exDays === null) ? '' : '; expires=' + exDate.toUTCString());
+        document.cookie = c_name + '=' + c_value;
 
     },
 
     getCookie : function (c_name) {
 
-        "use strict";
+        'use strict';
 
         // get the cookies and initialize some variables
         var i,
             x,
             y,
-            ARRcookies = document.cookie.split(";"),
-            ARRlength = ARRcookies.length;
-        
-        // loop thought the cookie array
-        for (i = 0; i < ARRlength; i = i + 1) {
+            ARRcookies = document.cookie.split(';'),
+            ARRcookieslength = ARRcookies.length;
 
-            x = ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
-            y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
-            x = x.replace(/^\s+|\s+$/g,"");
+        // loop through the cookie array
+        for (i = 0; i < ARRcookieslength; i = i + 1) {
+
+            x = ARRcookies[i].substr(0, ARRcookies[i].indexOf('='));
+            y = ARRcookies[i].substr(ARRcookies[i].indexOf('=') + 1);
+            x = x.replace(/^\s+|\s+$/g, '');
 
             if (x === c_name) {
+
                 return unescape(y);
+
             }
+
         }
 
     },
+
     isTouchDevice : function () {
 
-        if('ontouchstart' in document) {
+        if ('ontouchstart' in document) {
+
             return true;
+
         } else {
+
             return false;
+
         }
 
     },
+
     localStorageSupported : function () {
 
-        "use strict";
+        'use strict';
 
         var uid = new Date(),
             result;
 
         try {
+
             // set and pull a unique localStorage item to test support
             localStorage.setItem(uid, uid);
-            result = localStorage.getItem(uid) === uid;
+            result = localStorage.getItem(uid) === String(uid);
             localStorage.removeItem(uid); // remove it so we're not wasting space
             return result && localStorage;
 
@@ -118,7 +131,7 @@ FTS = {
 
     getUrlParameters : function (url) {
 
-        "use strict";
+        'use strict';
 
         // initialize the array & variables
         var query_string = {},
@@ -127,22 +140,41 @@ FTS = {
             pair,
             arr,
             vars,
-            varCount,
+            varsLength,
             typeTest;
 
+        // get current url if nothing passed in
+        if (typeof url === 'undefined') {
+
+            if (window.location.search !== '') {
+
+                query = window.location.search;
+
+            } else {
+
+                return 'undefined';
+
+            }
+
+        }
+
         // check if the value is a string or a URL from the address bar
-        if (typeof (url) === 'string') {
+        if (typeof url === 'string') {
+
             query = url.split('?')[1];
+
         } else {
+
             query = url.search.substring(1);
+
         }
 
         // split the remaining string/object at the ampersands and dump them into an array
         vars = query.split('&');
-        varCount = vars.length;
+        varsLength = vars.length;
 
         // loop through the array and push to a secondary array with key/value matching to access each object
-        for (q = 0; q < varCount; q = q + 1) {
+        for (q = 0; q < varsLength; q = q + 1) {
 
             // split each pair at the = size
             pair = vars[q].split('=');
@@ -163,6 +195,7 @@ FTS = {
                 query_string[pair[0]].push(pair[1]);
 
             }
+
         }
 
         return query_string;
@@ -171,23 +204,27 @@ FTS = {
 
     isEven : function (value) {
 
-        "use strict";
+        'use strict';
 
-        if (value % 2 === 0) {
+        if (value !== 'undefined') {
 
-            return true;
+            if (value % 2 === 0) {
+
+                return true;
+
+            }
 
         }
 
     }, // end even number check
-    
+
     isPositive : function (value) {
 
-        "use strict";
+        'use strict';
 
-        if( value !== 'undefined') {
+        if (value !== 'undefined') {
 
-            if( value > 0 ) {
+            if (value > 0) {
 
                 return true;
 
@@ -196,45 +233,49 @@ FTS = {
         }
 
     }, // end positive number check
-    
+
     getObjectSize : function (obj) {
-        
-        "use strict";
-        
+
+        'use strict';
+
         var size = 0,
             key;
 
         for (key in obj) {
-            if (obj.hasOwnProperty(key)) { 
-                size++;
+
+            if (obj.hasOwnProperty(key)) {
+
+                size = size + 1;
+
             }
+
         }
 
         return size;
 
     }, // End getObjectSize
-    
+
     stripHtml : function (fragment) {
-        
-        "use strict";
-        
-        var tmp = document.createElement("div");
-        
+
+        'use strict';
+
+        var tmp = document.createElement('div');
+
         tmp.innerHTML = fragment;
-   
+
         return tmp.textContent || tmp.innerText;
 
     }, // End strip html
 
-    store : function (namespace, data){
-        
-        "use strict";
-        
+    store : function (namespace, data) {
+
+        'use strict';
+
         var store,
             results;
-        
-        if(FTS.localStorageSupported && JSON) {
-            
+
+        if (FTS.localStorageSupported() && JSON) {
+
             // use localStorage if supported
             if (arguments.length > 1) {
 
@@ -262,14 +303,14 @@ FTS = {
             }
 
         }
-        
+
         return results;
 
     }, // End store data method
 
     groupDomElements : function (options, callback) {
 
-        "use strict";
+        'use strict';
 
         var defaults = {
             'containerId' : null,
@@ -295,20 +336,26 @@ FTS = {
         l;
 
         // map all default settings to user defined options
-        
-        for ( h in defaults ) {
+
+        for (h in defaults) {
+
             if (defaults.hasOwnProperty(h)) {
-                if( typeof(options[h]) === 'undefined' ) {
+
+                if (typeof(options[h]) === 'undefined') {
+
                     options[h] = defaults[h];
+
                 } // end typeof
+
             } // end hasOwnProperty
+
         } // end for in
-        
-        if( options.containerId !== null && options.groupingAttr !== null ) {
+
+        if (options.containerId !== null && options.groupingAttr !== null) {
 
             wrappingElement = document.getElementById(options.containerId);
 
-           if( document.querySelectorAll ) {
+           if (document.querySelectorAll) {
 
                attrElemList = wrappingElement.querySelectorAll('[' + options.groupingAttr + ']');
 
@@ -321,124 +368,156 @@ FTS = {
            attrElemLength = attrElemList.length;
            parentElement = attrElemList[0].parentNode;
 
-           if( attrElemLength > 0 ) {
+           if (attrElemLength > 0) {
 
                // push elements into a common array to be sorted
                for (i = 0; i < attrElemLength; i = i + 1) {
+
                    elemArray.push(attrElemList[i]);
+
                }
 
                // sort array items alphabetically by
-               elemArray = elemArray.sort( function (a, b) {
+               elemArray = elemArray.sort(function (a, b) {
 
                     var nameA = a.getAttribute(options.groupingAttr),
                         nameB = b.getAttribute(options.groupingAttr);
-                        
+
                     if (nameA < nameB) {
+
                         return -1;
+
                     } else if (nameA > nameB) {
+
                         return 1;
+
                     } else {
+
                         return 0;
+
                     }
 
                });
-               
+
                // Put sorted nodes back in to the DOM
                for (j = 0; j < elemArray.length; j = j + 1) {
+
                     sortedAttrList.push(elemArray[j].getAttribute(options.groupingAttr));
                     parentElement.appendChild(elemArray[j]);
                }
-               
-               if(options.wrapGroups) { 
+
+
+               if (options.wrapGroups) {
 
                    // build out the array listing
                    for (k = 0; k < sortedAttrList.length; k = k + 1) {
-                       if(sortedAttrList[k] !== sortedAttrList[k + 1]) {
+
+                       if (sortedAttrList[k] !== sortedAttrList[k + 1]) {
+
                            domListingArray.push(sortedAttrList[k]);
+
                        }
+
                    }
-                   
+
                    // add divs to the DOM from array elements
                    for (l = 0; l < domListingArray.length; l = l + 1) {
+
                        var newEl = document.createElement(options.wrappingElement);
-                       
+
                        newEl.id = options.prefix + domListingArray[l];
                        newEl.setAttribute('class', options.groupingClass);
-                       
+
                        parentElement.appendChild(newEl);
-                       
+
                    }
-                   
+
                    // add grouped elements to the DOM
                    for (j = 0; j < elemArray.length; j = j + 1) {
+
                        var sortingIdReference = elemArray[j].getAttribute(options.groupingAttr),
                            targetSortedDiv = document.getElementById(options.prefix + sortingIdReference);
-                       
+
                        targetSortedDiv.appendChild(elemArray[j]);
                    }
-                   
+
                } // end if wrapping
-               
+
            } // end attrElemLength
 
         } // end null check
 
         // make sure the callback is indeed a function before executing it
-        if( typeof(callback) === 'function' ) {
+        if (typeof(callback) === 'function') {
 
             callback.call(this);
 
         } // end check
 
     },
+
     getOrientation : function () {
 
-        "use strict";
+        'use strict';
 
-        if( FTS.isTouchDevice() ) {
+        if (FTS.isTouchDevice()) {
 
-            if(orientation === 0 || orientation === 180) {
+            if (orientation === 0 || orientation === 180) {
+
                 return 'portrait';
-            } else if(orientation === 90 || orientation === -90) {
+
+            } else if (orientation === 90 || orientation === -90) {
+
                 return 'landscape';
+
             } else {
+
                 return false;
+
             }
 
         }
 
     }, // end groupDomElements method
+
     loadScript : function (path, callback) {
 
-        "use strict";
+        'use strict';
 
-        var s = document.createElement("script");
+        var script = document.createElement('script');
 
-        if(s.addEventListener) {
+        if (script.addEventListener) {
 
-            s.addEventListener("load", function () {
-                if( typeof(callback) === 'function' ) {
+            script.addEventListener('load', function () {
+
+                if (typeof(callback) === 'function') {
+
                     callback.call(this);
+
                 }
+
             }, false);
 
         } else {
 
-            s.onreadystatechange = function () {
-                if(s.readyState === 'loaded' || s.readyState === 'complete') {
+            script.onreadystatechange = function () {
 
-                    if( typeof(callback) === 'function' ) {
+                if (script.readyState === 'loaded' || script.readyState === 'complete') {
+
+                    if (typeof(callback) === 'function') {
+
                         callback.call(this);
+
                     } // end check
 
-                    s.onreadystatechange = null;
+                    script.onreadystatechange = null;
                 }
+
             };
         } // end if/else
 
-        s.src = path;
-        document.getElementsByTagName('head')[0].appendChild(s);
+        script.src = path;
+        document.getElementsByTagName('head')[0].appendChild(script);
 
     } // end loadScript()
 
