@@ -8,6 +8,7 @@ Library lives in: <root>/js/lib/FTS.utilities.js
 - add JSON polyfill for global
 - create better documentation
 - strategically order methods
+- write tests
 
 ## Included Polyfills
 
