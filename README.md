@@ -167,3 +167,18 @@ Example:
         alert('keep your damn hands off me');
 
     }
+    
+## `on() & off()`
+        
+This method provides cross browser event bindings and is also use internally*
+
+Example:
+
+    FTS.on(elem, 'click', function(){
+        alert('the click');
+    });
+    
+    FTS.off(elem, 'click', function(){
+        alert('unbound!');
+    });
+    

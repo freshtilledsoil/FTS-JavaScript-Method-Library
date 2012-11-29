@@ -110,4 +110,14 @@
         console.log('keep your damn hands off me');
     }
     
+    /*
+        Event binding
+    */
+    
+    var button = document.getElementById('button');
+    
+    FTS.on(button, "click", function(){
+        alert('event!');
+    });
+
 })();

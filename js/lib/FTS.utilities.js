@@ -487,7 +487,19 @@ FTS = {
         'use strict';
 
         var script = document.createElement('script');
-
+        
+        FTS.on(script, 'load', function(){
+            
+            if (typeof(callback) === 'function') {
+                callback.call(this);
+            }
+            
+        });
+        
+        /*
+        
+        Removing this until proper testing is done for FTS.on with async loading
+        
         if (script.addEventListener) {
 
             script.addEventListener('load', function () {
@@ -516,11 +528,49 @@ FTS = {
                 }
 
             };
-        } // end if/else
+        }
+        
+        */
 
         script.src = path;
         document.getElementsByTagName('head')[0].appendChild(script);
 
-    } // end loadScript()
+    }, // end loadScript()
+
+    on : function (el, eventName, eventHandler) {
+        
+        'use strict';
+        
+        if (el.addEventListener){
+        
+            // normal event listener
+            el.addEventListener(eventName, eventHandler, false); 
+        
+        } else if (el.attachEvent){
+        
+            // fallback support for IE8 and below
+            el.attachEvent('on' + eventName, eventHandler);
+        
+        }
+        
+    }, // end on event method
+    
+    off : function () {
+
+        'use strict';
+        
+        if (el.removeEventListener) {
+            
+            // normal event listener
+            el.removeEventListener(eventName, eventHandler, false);
+            
+        } else if (el.detachEvent) {
+        
+            // fallback support for IE8 and below
+            el.detachEvent('on' + eventName, eventHandler);
+        
+        }
+
+    } // end off event method
 
 }; /* end FTS namespace */
