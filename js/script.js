@@ -1,4 +1,6 @@
-;(function(){
+FTS.ready(window, function() {
+    
+    alert('the document is ready to go!');
     
     /*
         Get URL Parameters
@@ -120,4 +122,4 @@
         alert('event!');
     });
 
-})();
+});

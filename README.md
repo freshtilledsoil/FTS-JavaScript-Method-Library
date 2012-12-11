@@ -181,4 +181,13 @@ Example:
     FTS.off(elem, 'click', function(){
         alert('unbound!');
     });
-    
+
+## `FTS.ready()`
+
+This method is like jQuery's document.ready()*
+
+Example:
+
+    FTS.ready(window, function(){
+        alert('the DOM is ready to go!');
+    });
