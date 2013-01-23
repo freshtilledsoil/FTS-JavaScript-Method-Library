@@ -191,3 +191,13 @@ Example:
     FTS.ready(window, function(){
         alert('the DOM is ready to go!');
     });
+    
+## `FTS.isMobile.any()`
+
+returns true if mobile device*
+
+Example:
+
+   if( FTS.isMobile.any() ) {
+        alert('mobile!');
+   }

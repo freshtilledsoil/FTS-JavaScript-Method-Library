@@ -55,7 +55,36 @@ if (console.log === 'undefined') {
 */
 
 FTS = {
+    
+    isMobile : {
 
+        Android: function () {
+            'use strict';
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function () {
+            'use strict';
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function () {
+            'use strict';
+            return navigator.userAgent.match(/iPhone|iPod/i);
+        },
+        Opera: function () {
+            'use strict';
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function () {
+            'use strict';
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function () {
+            'use strict';
+            return (FTS.isMobile.Android() || FTS.isMobile.BlackBerry() || FTS.isMobile.iOS() || FTS.isMobile.Opera() || FTS.isMobile.Windows());
+        }
+
+    },
+    
     setCookie : function (c_name, value) {
 
         'use strict';
@@ -555,7 +584,7 @@ FTS = {
         
     }, // end on event method
     
-    off : function () {
+    off : function (el, eventName, eventHandler) {
 
         'use strict';
         
