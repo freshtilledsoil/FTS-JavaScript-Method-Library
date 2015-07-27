@@ -45,7 +45,7 @@ FTS.ready(window, function() {
         var data = {
             'name': 'tim',
             'hands': 'fair-to-middlin',
-            'hair': 'yes'
+            'hair': 'for now'
         };
         
         console.log('The object size of "data" is: ' + FTS.getObjectSize(data));
